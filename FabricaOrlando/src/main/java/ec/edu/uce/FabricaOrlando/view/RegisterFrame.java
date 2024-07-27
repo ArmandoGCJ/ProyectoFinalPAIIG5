@@ -1,20 +1,13 @@
 package ec.edu.uce.FabricaOrlando.view;
 
 import ec.edu.uce.FabricaOrlando.model.Client;
-import ec.edu.uce.FabricaOrlando.repository.ClientRepository;
-import ec.edu.uce.FabricaOrlando.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class RegisterFrame extends JFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton registerButton;
-
-    private ClientService clientService = new ClientService();
 
     public RegisterFrame() {
         setTitle("Register");
@@ -52,11 +45,9 @@ public class RegisterFrame extends JFrame {
 
             String name = String.valueOf(usernameField);
             String password = String.valueOf(passwordField);
-
             Client client = new Client();
             client.setUserName(name);
             client.setPassword(password);
-            clientService.save(client);
         });
     }
 }

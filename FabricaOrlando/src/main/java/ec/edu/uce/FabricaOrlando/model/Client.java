@@ -1,20 +1,13 @@
 package ec.edu.uce.FabricaOrlando.model;
 
-import ec.edu.uce.FabricaOrlando.useful.Rol;
-import jakarta.persistence.*;
 
-@Entity
 public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String userName;
 
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Rol rol;
 
     public Client() {
     }
@@ -43,11 +36,4 @@ public class Client {
         this.password = password;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
 }

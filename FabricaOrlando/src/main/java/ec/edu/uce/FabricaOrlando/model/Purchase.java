@@ -1,25 +1,14 @@
 package ec.edu.uce.FabricaOrlando.model;
 
-import jakarta.persistence.*;
-
 import java.util.List;
 
-@Entity
+
 public class Purchase {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToMany
-    @JoinTable(
-            name = "purchase_order",
-            joinColumns = @JoinColumn(name = "purchase_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
     private List<Product> products;
 
     public Long getId() {

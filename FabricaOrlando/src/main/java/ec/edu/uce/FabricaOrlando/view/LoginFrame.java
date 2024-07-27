@@ -46,18 +46,13 @@ public class LoginFrame extends JFrame {
         add(panel);
 
         // Acciones de botones
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica de autenticación
-            }
+        loginButton.addActionListener(e-> {
+            // Lógica de autenticación
+            new ProductFrame();
         });
 
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new RegisterFrame().setVisible(true);
-            }
+        registerButton.addActionListener(e -> {
+            new RegisterFrame().setVisible(true);
         });
     }
 

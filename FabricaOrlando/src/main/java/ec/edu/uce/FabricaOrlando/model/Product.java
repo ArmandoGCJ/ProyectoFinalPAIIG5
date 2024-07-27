@@ -1,21 +1,23 @@
 package ec.edu.uce.FabricaOrlando.model;
 
-import jakarta.persistence.*;
-
 import java.util.List;
 
-@Entity
+
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String name;
 
+    private String imagenPath;
+
     private String details;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Stage> stages;
+
+    public Product(String imagenPath, String details) {
+        this.imagenPath = imagenPath;
+        this.details = details;
+    }
 
     public Long getId() {
         return id;
@@ -33,19 +35,19 @@ public class Product {
         this.name = name;
     }
 
+    public String getImagenPath() {
+        return imagenPath;
+    }
+
+    public void setImagenPath(String imagenPath) {
+        this.imagenPath = imagenPath;
+    }
+
     public String getDetails() {
         return details;
     }
 
     public void setDetails(String details) {
         this.details = details;
-    }
-
-    public List<Stage> getStages() {
-        return stages;
-    }
-
-    public void setStages(List<Stage> stages) {
-        this.stages = stages;
     }
 }
