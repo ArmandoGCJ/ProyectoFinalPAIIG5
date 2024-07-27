@@ -1,62 +1,71 @@
 package ec.edu.uce.AdminOrlando.view;
 
 import ec.edu.uce.AdminOrlando.controller.AdminAppService;
-import ec.edu.uce.AdminOrlando.service.ClientService;
-import ec.edu.uce.AdminOrlando.view.RegisterFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 public class LoginFrame extends JFrame {
     private JTextField usernameField;
-    private JPasswordField passwordField;
+    private JTextField passwordField; // Cambiado a JTextField para hacer visible la contraseña
     private JButton loginButton;
-    private JButton registerButton;
+    private JButton goToRegisterButton;
 
     @Autowired
     private AdminAppService adminAppService;
 
     public LoginFrame() {
         setTitle("Login");
-        setSize(300, 200);
+        setResizable(false);
+        setSize(400,200); // Tamaño de la ventana aumenta
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        panel.setBackground(new Color(216, 20, 47));
 
-        JLabel userLabel = new JLabel("Username:");
-        userLabel.setBounds(10, 20, 80, 25);
+        JLabel userLabel = new JLabel("Nombre de usuario:");
+        userLabel.setBounds(10, 20, 140, 25);
         panel.add(userLabel);
 
         usernameField = new JTextField(20);
-        usernameField.setBounds(100, 20, 165, 25);
+        usernameField.setBounds(140, 20, 230, 25);
         panel.add(usernameField);
 
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(10, 50, 80, 25);
+        JLabel passwordLabel = new JLabel("Contraseña:");
+        passwordLabel.setBounds(10, 60, 100, 25);
         panel.add(passwordLabel);
 
-        passwordField = new JPasswordField(20);
-        passwordField.setBounds(100, 50, 165, 25);
+        passwordField = new JTextField(20); // Cambiado a JTextField para hacer visible la contraseña
+        passwordField.setBounds(140, 60, 230, 25);
         panel.add(passwordField);
 
-        loginButton = new JButton("Login");
-        loginButton.setBounds(10, 80, 80, 25);
+        loginButton = new JButton("Iniciar");
+        loginButton.setBounds(10, 100, 150, 35); // Botón más largo
+        loginButton.setBackground(new Color(246, 246, 246));
         panel.add(loginButton);
 
-        registerButton = new JButton("Register");
-        registerButton.setBounds(180, 80, 100, 25);
-        panel.add(registerButton);
+        goToRegisterButton = new JButton("Registrarse");
+        goToRegisterButton.setCursor(new Cursor(6));
+        goToRegisterButton.setBounds(220, 100, 150, 35); // Botón más largo
+        goToRegisterButton.setBackground(new Color(246, 246, 246));
+        panel.add(goToRegisterButton);
 
         add(panel);
 
-        // Acciones de botones
-        loginButton.addActionListener(e -> System.out.println(usernameField.getText()));
 
-        registerButton.addActionListener(e -> new RegisterFrame().setVisible(true));
+        loginButton.addActionListener(e -> {
+
+            new OrdersFrame().setVisible(true);
+            dispose();
+        });
+
+        goToRegisterButton.addActionListener(e -> {
+            this.setVisible(false);
+            new RegisterFrame(this).setVisible(true);
+        });
     }
-}
 
+}

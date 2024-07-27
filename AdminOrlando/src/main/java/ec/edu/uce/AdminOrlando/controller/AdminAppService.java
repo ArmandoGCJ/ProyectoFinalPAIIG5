@@ -2,7 +2,6 @@ package ec.edu.uce.AdminOrlando.controller;
 
 import ec.edu.uce.AdminOrlando.model.Admin;
 import ec.edu.uce.AdminOrlando.service.ClientService;
-import ec.edu.uce.AdminOrlando.util.Rol;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -27,7 +26,6 @@ public class AdminAppService {
         Admin admin = new Admin();
         admin.setUserName("admin");
         admin.setPassword("admin");
-        admin.setRol(Rol.ADMIN);
         clientService.save(admin);
 
         System.out.println("Client saved: " + admin.getUserName());

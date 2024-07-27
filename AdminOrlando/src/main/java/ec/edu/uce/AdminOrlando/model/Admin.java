@@ -1,6 +1,5 @@
 package ec.edu.uce.AdminOrlando.model;
 
-import ec.edu.uce.AdminOrlando.util.Rol;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +13,7 @@ public class Admin {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Rol rol;
+    private String rol;
 
     public Admin() {
     }
@@ -43,11 +42,5 @@ public class Admin {
         this.password = password;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
 }
