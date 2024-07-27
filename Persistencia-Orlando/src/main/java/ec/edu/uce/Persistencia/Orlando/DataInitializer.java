@@ -4,21 +4,27 @@ import ec.edu.uce.Persistencia.Orlando.model.Cliente;
 import ec.edu.uce.Persistencia.Orlando.model.Etapa;
 import ec.edu.uce.Persistencia.Orlando.model.Producto;
 import ec.edu.uce.Persistencia.Orlando.service.ClienteService;
+import ec.edu.uce.Persistencia.Orlando.service.PedidoService;
 import ec.edu.uce.Persistencia.Orlando.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
 
     private final ClienteService clienteService;
     private final ProductoService productoService;
+    private final PedidoService pedidoService;
 
     @Autowired
-    public DataInitializer(ClienteService clienteService, ProductoService productoService) {
+    public DataInitializer(ClienteService clienteService, ProductoService productoService, PedidoService pedidoService) {
         this.clienteService = clienteService;
         this.productoService = productoService;
+        this.pedidoService = pedidoService;
     }
 
     @Override
@@ -46,9 +52,34 @@ public class DataInitializer implements CommandLineRunner {
         etapa2.setDuracion(10);
         etapa2.setProducto(producto);
 
-        producto.agregarEtapa(etapa1);
-        producto.agregarEtapa(etapa2);
+        producto.getEtapas().add(etapa1);
+        producto.getEtapas().add(etapa2);
 
         productoService.guardarProducto(producto);
+
+        // Crear otro producto para añadir al pedido
+        Producto producto2 = new Producto();
+        producto2.setNombre("Pan");
+        producto2.setPrecio(5.00);
+        producto2.setDescripcion("Pan integral");
+
+        Etapa etapa3 = new Etapa();
+        etapa3.setDescripcion("Amasar");
+        etapa3.setDuracion(7);
+        etapa3.setProducto(producto2);
+
+        Etapa etapa4 = new Etapa();
+        etapa4.setDescripcion("Hornear");
+        etapa4.setDuracion(15);
+        etapa4.setProducto(producto2);
+
+        producto2.getEtapas().add(etapa3);
+        producto2.getEtapas().add(etapa4);
+
+        productoService.guardarProducto(producto2);
+
+        // Agregar un pedido
+        List<Long> productosIds = Arrays.asList(producto.getId(), producto2.getId());
+        pedidoService.guardarPedido(cliente.getId(), productosIds);
     }
 }

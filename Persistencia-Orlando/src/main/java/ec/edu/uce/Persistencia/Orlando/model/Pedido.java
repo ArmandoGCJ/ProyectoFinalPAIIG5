@@ -46,4 +46,8 @@ public class Pedido {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
+
+    public void agregarProductos(Producto producto){
+        productos.add(producto);
+    }
 }
