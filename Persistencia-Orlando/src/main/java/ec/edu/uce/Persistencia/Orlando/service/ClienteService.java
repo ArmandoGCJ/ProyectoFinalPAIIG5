@@ -20,7 +20,8 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public List<Cliente> obtenerTodosLosClientes() {
-        return clienteRepository.findAll();
+    public Cliente autenticarCliente(String nombre, String contrasena) {
+        return clienteRepository.findByNombreAndContrasena(nombre, contrasena)
+                .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
     }
 }

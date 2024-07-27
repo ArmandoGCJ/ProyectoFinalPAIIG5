@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
     private final ClienteService clienteService;
 
@@ -18,15 +18,15 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @PostMapping
-    public ResponseEntity<Cliente> crearCliente(@RequestBody Cliente cliente) {
+    @PostMapping("/registrar")
+    public ResponseEntity<Cliente> registrarCliente(@RequestBody Cliente cliente) {
         Cliente nuevoCliente = clienteService.guardarCliente(cliente);
         return ResponseEntity.ok(nuevoCliente);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Cliente>> obtenerTodosLosClientes() {
-        List<Cliente> clientes = clienteService.obtenerTodosLosClientes();
-        return ResponseEntity.ok(clientes);
+    @PostMapping("/iniciar-sesion")
+    public ResponseEntity<Cliente> iniciarSesion(@RequestBody LoginRequest loginRequest) {
+        Cliente cliente = clienteService.autenticarCliente(loginRequest.getNombre(), loginRequest.getContrasena());
+        return ResponseEntity.ok(cliente);
     }
 }
