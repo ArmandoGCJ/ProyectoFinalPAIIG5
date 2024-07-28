@@ -1,26 +1,29 @@
 package ec.edu.uce.AdminOrlando.view;
 
-import ec.edu.uce.AdminOrlando.controller.AdminAppService;
-import org.springframework.beans.factory.annotation.Autowired;
+import ec.edu.uce.AdminOrlando.Api.ClienteApi;
+import ec.edu.uce.AdminOrlando.Api.ProductoApi;
+import ec.edu.uce.AdminOrlando.model.Cliente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class LoginFrame extends JFrame {
     private JTextField usernameField;
     private JTextField passwordField; // Cambiado a JTextField para hacer visible la contraseña
     private JButton loginButton;
     private JButton goToRegisterButton;
-
-    @Autowired
-    private AdminAppService adminAppService;
+    private ClienteApi clienteApi;
+    private ProductoApi productoApi;
 
     public LoginFrame() {
         setTitle("Login");
         setResizable(false);
-        setSize(400,200); // Tamaño de la ventana aumenta
+        setSize(400, 200); // Tamaño de la ventana aumenta
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.clienteApi = new ClienteApi();
+        this.productoApi = new ProductoApi();
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -55,11 +58,18 @@ public class LoginFrame extends JFrame {
 
         add(panel);
 
-
         loginButton.addActionListener(e -> {
-
-            new OrdersFrame().setVisible(true);
-            dispose();
+            String usuario = usernameField.getText();
+            String password = passwordField.getText();
+            if (!usuario.isEmpty() && !password.isEmpty()) {
+                if (iniciarSesion(usuario, password)) {
+                    OrdersFrame ordersFrame = new OrdersFrame(new JPanel());
+                    ordersFrame.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Login failed");
+                }
+            }
         });
 
         goToRegisterButton.addActionListener(e -> {
@@ -68,4 +78,17 @@ public class LoginFrame extends JFrame {
         });
     }
 
-}
+    public boolean iniciarSesion(String usuario, String password) {
+        try {
+            Cliente cliente = clienteApi.iniciarSesion(usuario, password);
+            System.out.println("Cliente autenticado: " + cliente.getNombre());
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    }
+

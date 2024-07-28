@@ -1,7 +1,11 @@
 package ec.edu.uce.AdminOrlando.view;
 
+import ec.edu.uce.AdminOrlando.Api.ClienteApi;
+import ec.edu.uce.AdminOrlando.model.Cliente;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class RegisterFrame extends JFrame {
     private JTextField registerUsernameField;
@@ -9,6 +13,7 @@ public class RegisterFrame extends JFrame {
     private JButton registerButton;
     private JButton goToLoginButton;
     private LoginFrame loginFrame;
+    private ClienteApi clienteApi;
 
     public RegisterFrame(LoginFrame loginFrame) {
         this.loginFrame = loginFrame;
@@ -18,6 +23,7 @@ public class RegisterFrame extends JFrame {
         setSize(400, 200); // Tamaño de la ventana aumentado
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.clienteApi = new ClienteApi();
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -51,10 +57,16 @@ public class RegisterFrame extends JFrame {
 
         add(panel);
 
-        // Acciones de botones
+
         registerButton.addActionListener(e -> {
-            // Aquí debería ir la lógica de registro
-            JOptionPane.showMessageDialog(this, "Registrado con éxito");
+            String usuario = registerUsernameField.getText();
+            String password = registerPasswordField.getText();
+            if (!usuario.isEmpty() && !password.isEmpty()) {
+                registrarCliente(usuario, password);
+                JOptionPane.showMessageDialog(this, "Registrado con éxito");
+            }
+
+
             this.setVisible(false);
             loginFrame.setVisible(true);
         });
@@ -63,5 +75,18 @@ public class RegisterFrame extends JFrame {
             this.setVisible(false);
             loginFrame.setVisible(true);
         });
+    }
+
+    public void registrarCliente(String nombre, String contrasena) {
+        Cliente cliente = new Cliente();
+        cliente.setNombre(nombre);
+        cliente.setContrasena(contrasena);
+        cliente.setRol("ADMIN");
+        try {
+            Cliente nuevoCliente = clienteApi.registrarCliente(cliente);
+            System.out.println("Cliente registrado: " + nuevoCliente.getNombre());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
