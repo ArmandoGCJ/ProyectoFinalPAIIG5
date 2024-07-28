@@ -9,9 +9,10 @@ import java.util.List;
 
 @Service
 public class ClienteService {
-    private final ClienteRepository clienteRepository;
 
     @Autowired
+    private final ClienteRepository clienteRepository;
+
     public ClienteService(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
@@ -21,7 +22,6 @@ public class ClienteService {
     }
 
     public Cliente autenticarCliente(String nombre, String contrasena) {
-        return clienteRepository.findByNombreAndContrasena(nombre, contrasena)
-                .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
+        return clienteRepository.findByNombreAndContrasena(nombre, contrasena);
     }
 }

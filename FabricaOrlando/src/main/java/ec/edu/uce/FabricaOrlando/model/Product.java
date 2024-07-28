@@ -1,7 +1,5 @@
 package ec.edu.uce.FabricaOrlando.model;
 
-import java.util.List;
-
 
 public class Product {
 
@@ -9,14 +7,21 @@ public class Product {
 
     private String name;
 
+    private Double price;
+
+    private String description;
+
     private String imagenPath;
 
-    private String details;
+    public Product(String name, Double price, String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
 
-
-    public Product(String imagenPath, String details) {
+    public Product(String imagenPath, String description) {
         this.imagenPath = imagenPath;
-        this.details = details;
+        this.description = description;
     }
 
     public Long getId() {
@@ -43,11 +48,19 @@ public class Product {
         this.imagenPath = imagenPath;
     }
 
-    public String getDetails() {
-        return details;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

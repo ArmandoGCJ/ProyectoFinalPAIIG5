@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductFrame {
+public class ProductFrame extends JFrame{
     List<Product> productos = new ArrayList<>();
 
     public ProductFrame() {
@@ -23,9 +23,9 @@ public class ProductFrame {
         // Puedes agregar más productos a la lista
 
         // Crear el marco principal
-        JFrame frame = new JFrame("Interfaz de Productos");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setTitle("Interfaz de Productos");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
         // Crear el panel principal con un GridBagLayout
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -54,8 +54,7 @@ public class ProductFrame {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Añadir el JScrollPane al marco y hacerlo visible
-        frame.add(scrollPane);
-        frame.setVisible(true);
+        add(scrollPane);
 
     }
 
@@ -65,7 +64,7 @@ public class ProductFrame {
         panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         JLabel imagen = new JLabel(new ImageIcon(producto.getImagenPath()));
-        JLabel descripcion = new JLabel("<html>" + producto.getDetails() + "</html>");
+        JLabel descripcion = new JLabel("<html>" + producto.getDescription() + "</html>");
         descripcion.setAlignmentX(Component.CENTER_ALIGNMENT);
         JButton boton = new JButton("Detalles");
         boton.setAlignmentX(Component.CENTER_ALIGNMENT);

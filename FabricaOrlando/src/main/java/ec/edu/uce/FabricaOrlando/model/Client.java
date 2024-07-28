@@ -4,14 +4,11 @@ package ec.edu.uce.FabricaOrlando.model;
 public class Client {
 
     private Long id;
+    private String nombre;
+    private String contrasena;
+    private String rol;
 
-    private String userName;
-
-    private String password;
-
-    public Client() {
-    }
-
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -20,20 +17,27 @@ public class Client {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }

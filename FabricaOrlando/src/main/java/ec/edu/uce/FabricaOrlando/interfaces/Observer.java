@@ -1,2 +1,6 @@
-package ec.edu.uce.FabricaOrlando.interfaces;public interface Observer {
+package ec.edu.uce.FabricaOrlando.interfaces;
+
+@FunctionalInterface
+public interface Observer {
+    void notificar();
 }

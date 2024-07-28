@@ -10,9 +10,9 @@ import javax.swing.*;
 @SpringBootApplication
 public class AdminOrlandoApplication implements CommandLineRunner {
 
+	@Autowired
 	private final AdminAppService adminAppService;
 
-	@Autowired
 	public AdminOrlandoApplication(AdminAppService adminAppService) {
 		this.adminAppService = adminAppService;
 	}
