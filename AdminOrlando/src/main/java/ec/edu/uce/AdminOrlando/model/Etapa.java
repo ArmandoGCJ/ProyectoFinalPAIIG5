@@ -8,7 +8,6 @@ public class Etapa {
     private String nombre;
     private String descripcion;
 
-    // Getters y setters
 
     public String getId() {
         return id;

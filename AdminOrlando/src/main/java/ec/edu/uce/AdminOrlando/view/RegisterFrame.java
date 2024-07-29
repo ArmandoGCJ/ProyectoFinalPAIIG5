@@ -20,14 +20,14 @@ public class RegisterFrame extends JFrame {
 
         setTitle("Registrarse");
         setResizable(false);
-        setSize(400, 200); // Tamaño de la ventana aumentado
+        setSize(400, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         this.clienteApi = new ClienteApi();
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(new Color(216, 20, 47));
+        panel.setBackground(new Color(30, 144, 255));
 
         JLabel registerUserLabel = new JLabel("Nombre de usuario:");
         registerUserLabel.setBounds(10, 20, 140, 25);

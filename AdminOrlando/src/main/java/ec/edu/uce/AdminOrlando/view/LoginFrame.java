@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class LoginFrame extends JFrame {
     private JTextField usernameField;
-    private JTextField passwordField; // Cambiado a JTextField para hacer visible la contraseña
+    private JTextField passwordField;
     private JButton loginButton;
     private JButton goToRegisterButton;
     private ClienteApi clienteApi;
@@ -41,18 +41,18 @@ public class LoginFrame extends JFrame {
         passwordLabel.setBounds(10, 60, 100, 25);
         panel.add(passwordLabel);
 
-        passwordField = new JTextField(20); // Cambiado a JTextField para hacer visible la contraseña
+        passwordField = new JTextField(20);
         passwordField.setBounds(140, 60, 230, 25);
         panel.add(passwordField);
 
         loginButton = new JButton("Iniciar");
-        loginButton.setBounds(10, 100, 150, 35); // Botón más largo
+        loginButton.setBounds(10, 100, 150, 35);
         loginButton.setBackground(new Color(246, 246, 246));
         panel.add(loginButton);
 
         goToRegisterButton = new JButton("Registrarse");
         goToRegisterButton.setCursor(new Cursor(6));
-        goToRegisterButton.setBounds(220, 100, 150, 35); // Botón más largo
+        goToRegisterButton.setBounds(220, 100, 150, 35);
         goToRegisterButton.setBackground(new Color(246, 246, 246));
         panel.add(goToRegisterButton);
 
@@ -90,5 +90,5 @@ public class LoginFrame extends JFrame {
     }
 
 
-    }
+}
 

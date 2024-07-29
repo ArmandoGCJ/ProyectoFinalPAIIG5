@@ -26,7 +26,7 @@ public class ProductoApi {
 
     public List<Producto> obtenerTodosLosProductos() throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet(BASE_URL);
+        HttpGet httpGet = new HttpGet(BASE_URL + "/all");
         try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
             if (response.getCode() == 200) {
                 return objectMapper.readValue(response.getEntity().getContent(), objectMapper.getTypeFactory().constructCollectionType(List.class, Producto.class));
@@ -42,31 +42,32 @@ public class ProductoApi {
         String json = objectMapper.writeValueAsString(producto);
         httpPost.setEntity(EntityBuilder.create().setText(json).setContentType(ContentType.APPLICATION_JSON).build());
         try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-            if (response.getCode() != 201) {
-                throw new RuntimeException("Failed to add product");
+            int statusCode = response.getCode();
+            System.out.println("Response status code: " + statusCode);
+            if (statusCode != 201) {
             }
         }
     }
+
 
     public void eliminarProducto(Long id) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpDelete httpDelete = new HttpDelete(BASE_URL + "/" + id);
         try (CloseableHttpResponse response = httpClient.execute(httpDelete)) {
-            if (response.getCode() != 204) {
-                throw new RuntimeException("Failed to delete product");
+            int statusCode = response.getCode();
+            if (statusCode != 204) {
+                String errorMessage = "Error al eliminar producto: Código de estado " + statusCode;
+                if (statusCode == 404) {
+                    errorMessage += " - Producto no encontrado";
+                }
+                System.err.println(errorMessage);
+                throw new RuntimeException(errorMessage);
             }
+        } catch (IOException e) {
+            System.err.println("Error de IO al eliminar producto: " + e.getMessage());
+            throw e;
         }
     }
 
-    public Producto obtenerProductoPorNombre(String nombre) throws IOException {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet(BASE_URL + "/nombre/" + nombre);
-        try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
-            if (response.getCode() == 200) {
-                return objectMapper.readValue(response.getEntity().getContent(), Producto.class);
-            } else {
-                throw new RuntimeException("Failed to fetch product by name");
-            }
-        }
-    }
 }
+

@@ -33,7 +33,7 @@ public class ClienteApi {
 
     public Cliente iniciarSesion(String nombre, String contrasena) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost(BASE_URL + "/iniciar-sesion");
+        HttpPost httpPost = new HttpPost(BASE_URL + "/login");
         ObjectMapper objectMapper = new ObjectMapper();
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setNombre(nombre);

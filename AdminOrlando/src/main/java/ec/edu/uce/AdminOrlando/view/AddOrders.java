@@ -16,44 +16,57 @@ public class AddOrders extends JDialog {
         this.ordersFrame = ordersFrame;
 
         setTitle("Agregar Producto");
-        setSize(300, 300);
+        setSize(400, 300);
+        setResizable(true);
         setModal(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(ordersFrame);
 
         JPanel panel = new JPanel();
-        panel.setLayout(null);
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(new Color(102, 205, 2));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel productNameLabel = new JLabel("Nombre del Producto:");
-        productNameLabel.setBounds(10, 20, 150, 25);
-        panel.add(productNameLabel);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(productNameLabel, gbc);
 
         productNameField = new JTextField(20);
-        productNameField.setBounds(170, 20, 100, 25);
-        panel.add(productNameField);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        panel.add(productNameField, gbc);
 
         JLabel productDescriptionLabel = new JLabel("Descripción:");
-        productDescriptionLabel.setBounds(10, 60, 150, 25);
-        panel.add(productDescriptionLabel);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(productDescriptionLabel, gbc);
 
         productDescriptionField = new JTextField(20);
-        productDescriptionField.setBounds(170, 60, 100, 25);
-        panel.add(productDescriptionField);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(productDescriptionField, gbc);
 
         JLabel productPriceLabel = new JLabel("Precio:");
-        productPriceLabel.setBounds(10, 100, 150, 25);
-        panel.add(productPriceLabel);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(productPriceLabel, gbc);
 
         productPriceField = new JTextField(20);
-        productPriceField.setBounds(170, 100, 100, 25);
-        panel.add(productPriceField);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        panel.add(productPriceField, gbc);
 
         addButton = new JButton("Agregar");
-        addButton.setBounds(10, 140, 260, 35);
-        addButton.setBackground(new Color(246, 246, 246));
-        panel.add(addButton);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        panel.add(addButton, gbc);
 
         add(panel);
+
         addButton.addActionListener(e -> {
             String productName = productNameField.getText();
             String productDescription = productDescriptionField.getText();
@@ -61,13 +74,14 @@ public class AddOrders extends JDialog {
             try {
                 productPrice = Double.parseDouble(productPriceField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Por favor ingrese un precio válido", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Por favor complete los campos", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (!productName.isEmpty() && !productDescription.isEmpty()) {
                 Producto nuevoProducto = new Producto(productName, productDescription, productPrice);
                 try {
-                    ordersFrame.addProduct(nuevoProducto);
+                    ordersFrame.agregarProducto(nuevoProducto);
+                    JOptionPane.showMessageDialog(this, "Producto agregado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Error al agregar producto: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
