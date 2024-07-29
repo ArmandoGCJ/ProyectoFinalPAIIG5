@@ -16,7 +16,7 @@ public class ObserverClass implements Observer {
     @Override
     public void notificar(String estado, int progreso) {
         SwingUtilities.invokeLater(() -> {
-            if (progressBar.getValue() < progreso) { // Evitar retroceder el progreso
+            if (progressBar.getValue() < progreso) {
                 progressBar.setValue(progreso);
             }
             statusLabel.setText("Estado: " + estado);

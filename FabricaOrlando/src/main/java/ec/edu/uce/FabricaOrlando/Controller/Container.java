@@ -38,10 +38,6 @@ public class Container {
         return apiProduct.getAll();
     }
 
-    public List<Etapa> getAllEtapa(){
-        return apiEtapa.getAll();
-    }
-
     public List<Etapa> getEtapasPorProductoId(Long productoId) {
         return apiEtapa.getEtapasPorProductoId(productoId);
     }

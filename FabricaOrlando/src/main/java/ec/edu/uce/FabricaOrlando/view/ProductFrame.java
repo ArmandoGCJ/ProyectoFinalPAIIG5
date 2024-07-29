@@ -155,7 +155,6 @@ public class ProductFrame extends JFrame {
         for (Etapa etapa : etapas) {
             etapa.agregarObserver(observer);
         }
-
         executor.execute(() -> {
             for (Etapa etapa : etapas) {
                 try {

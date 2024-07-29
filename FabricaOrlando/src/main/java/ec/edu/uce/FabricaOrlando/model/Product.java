@@ -15,13 +15,6 @@ public class Product {
     public Product() {
     }
 
-    public Product(String imagenPath, String nombre, String descripcion, double precio) {
-        this.imagenPath = imagenPath;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-    }
-
     public long getId() {
         return id;
     }

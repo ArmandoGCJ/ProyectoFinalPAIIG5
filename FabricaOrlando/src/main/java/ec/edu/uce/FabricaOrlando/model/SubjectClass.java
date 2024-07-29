@@ -12,10 +12,6 @@ public abstract class SubjectClass {
         observers.add(observer);
     }
 
-    public void removerObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
     protected void notificarObservers(String estado, int progreso) {
         for (Observer observer : observers) {
             observer.notificar(estado, progreso);

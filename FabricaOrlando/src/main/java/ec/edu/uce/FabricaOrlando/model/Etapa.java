@@ -1,10 +1,5 @@
 package ec.edu.uce.FabricaOrlando.model;
 
-import ec.edu.uce.FabricaOrlando.interfaces.Observable;
-import ec.edu.uce.FabricaOrlando.interfaces.Observer;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Etapa extends SubjectClass {
@@ -13,6 +8,8 @@ public class Etapa extends SubjectClass {
     private String descripcion;
     private int duracion;
 
+    public Etapa() {
+    }
 
     public Long getId() {
         return id;

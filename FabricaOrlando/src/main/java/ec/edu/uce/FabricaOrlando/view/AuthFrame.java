@@ -10,8 +10,6 @@ import java.io.IOException;
 public class AuthFrame extends JFrame {
     private final JPanel mainPanel;
     private final CardLayout cardLayout;
-
-    // Login components
     private final JTextField loginUsernameField, registerUsernameField;
     private final JPasswordField loginPasswordField, registerPasswordField;
 
@@ -28,7 +26,6 @@ public class AuthFrame extends JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        // Initialize Login Panel
         JPanel loginPanel = new JPanel(null);
 
         JLabel loginUserLabel = new JLabel("Username:");
@@ -82,16 +79,14 @@ public class AuthFrame extends JFrame {
         goToLoginButton.setBounds(180, 80, 100, 25);
         registerPanel.add(goToLoginButton);
 
-        // Add panels to CardLayout
         mainPanel.add(loginPanel, "Login");
         mainPanel.add(registerPanel, "Register");
 
         add(mainPanel);
 
-        // Set initial panel
         cardLayout.show(mainPanel, "Login");
 
-        // Action listeners
+
         loginButton.addActionListener(e -> {
             String name = loginUsernameField.getText();
             String password = new String(loginPasswordField.getPassword());
