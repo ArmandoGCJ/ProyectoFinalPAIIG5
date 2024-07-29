@@ -2,6 +2,13 @@ package ec.edu.uce.AdminOrlando;
 
 import javax.swing.*;
 
+/**
+ *
+ * @author Cristian Lechon , Edgar Tipan  y  Armando Valle.
+ * Titulo: Proyecto Grupal Final Grupo 5.
+ * Fabrica Orlando.
+ */
+
 public class AdminOrlandoApplication {
 
 
