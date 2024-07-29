@@ -4,4 +4,5 @@ public interface Observable {
 
     void notificarTodos();
     void agregarObserver(Observer observer);
+    void eliminarObserver(Observer observer);
 }

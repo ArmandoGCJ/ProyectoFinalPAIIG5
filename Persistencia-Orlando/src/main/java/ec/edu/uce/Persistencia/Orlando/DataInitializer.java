@@ -10,12 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private final ProductoService productoService;
-
     @Autowired
-    public DataInitializer(ProductoService productoService) {
-        this.productoService = productoService;
-    }
+    private ProductoService productoService;
+
 
     @Override
     public void run(String... args) throws Exception {

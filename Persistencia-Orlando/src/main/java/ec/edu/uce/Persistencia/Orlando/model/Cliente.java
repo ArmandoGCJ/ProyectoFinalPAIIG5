@@ -15,6 +15,9 @@ public class Cliente {
     private String contrasena;
     private String rol;
 
+    public Cliente() {
+    }
+
     public Long getId() {
         return id;
     }

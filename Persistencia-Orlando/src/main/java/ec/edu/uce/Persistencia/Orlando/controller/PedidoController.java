@@ -13,14 +13,11 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
-    private final PedidoService pedidoService;
 
     @Autowired
-    public PedidoController(PedidoService pedidoService) {
-        this.pedidoService = pedidoService;
-    }
+    private PedidoService pedidoService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<PedidoDTO> crearPedido(@RequestBody CrearPedidoRequest request) {
         Pedido nuevoPedido = pedidoService.guardarPedido(request.getClienteId(), request.getProductosIds());
         PedidoDTO pedidoDTO = PedidoMapper.toDTO(nuevoPedido);

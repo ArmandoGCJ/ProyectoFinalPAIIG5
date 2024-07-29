@@ -15,6 +15,9 @@ public class Etapa {
     @JoinColumn(name = "producto_id")
     private Producto producto;
 
+    public Etapa() {
+    }
+
     public Long getId() {
         return id;
     }

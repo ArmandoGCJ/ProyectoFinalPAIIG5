@@ -11,11 +11,7 @@ import java.util.List;
 public class ClienteService {
 
     @Autowired
-    private final ClienteRepository clienteRepository;
-
-    public ClienteService(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
+    private ClienteRepository clienteRepository;
 
     public Cliente guardarCliente(Cliente cliente) {
         return clienteRepository.save(cliente);

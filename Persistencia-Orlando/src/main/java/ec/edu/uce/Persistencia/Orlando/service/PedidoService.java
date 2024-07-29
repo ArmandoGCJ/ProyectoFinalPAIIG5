@@ -13,16 +13,12 @@ import java.util.List;
 
 @Service
 public class PedidoService {
-    private final PedidoRepository pedidoRepository;
-    private final ClienteRepository clienteRepository;
-    private final ProductoRepository productoRepository;
-
     @Autowired
-    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository, ProductoRepository productoRepository) {
-        this.pedidoRepository = pedidoRepository;
-        this.clienteRepository = clienteRepository;
-        this.productoRepository = productoRepository;
-    }
+    private  PedidoRepository pedidoRepository;
+    @Autowired
+    private  ClienteRepository clienteRepository;
+    @Autowired
+    private  ProductoRepository productoRepository;
 
     public Pedido guardarPedido(Long clienteId, List<Long> productosIds) {
         Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new RuntimeException("Cliente no encontrado"));

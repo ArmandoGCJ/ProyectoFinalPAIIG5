@@ -14,12 +14,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    private final ClienteService clienteService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
+    private ClienteService clienteService;
 
     @PostMapping("/registrar")
     public ResponseEntity<Cliente> registrarCliente(@RequestBody Cliente cliente) {

@@ -9,18 +9,15 @@ import java.util.List;
 
 @Service
 public class EtapaService {
-    private final EtapaRepository etapaRepository;
 
     @Autowired
-    public EtapaService(EtapaRepository etapaRepository) {
-        this.etapaRepository = etapaRepository;
-    }
+    private  EtapaRepository etapaRepository;
 
-    public Etapa guardarEtapa(Etapa etapa) {
-        return etapaRepository.save(etapa);
-    }
-
-/*    public List<Etapa> obtenerTodasLasEtapas() {
+    public List<Etapa> obtenerTodasLasEtapas() {
         return etapaRepository.findAll();
-    }*/
+    }
+
+    public List<Etapa> obtenerEtapasPorProductoId(Long productoId) {
+        return etapaRepository.findByProductoId(productoId);
+    }
 }

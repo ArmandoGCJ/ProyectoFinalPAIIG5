@@ -8,22 +8,14 @@ import java.awt.*;
 import java.io.IOException;
 
 public class AuthFrame extends JFrame {
-    private JPanel mainPanel;
-    private CardLayout cardLayout;
+    private final JPanel mainPanel;
+    private final CardLayout cardLayout;
 
     // Login components
-    private JTextField loginUsernameField;
-    private JPasswordField loginPasswordField;
-    private JButton loginButton;
-    private JButton goToRegisterButton;
+    private final JTextField loginUsernameField, registerUsernameField;
+    private final JPasswordField loginPasswordField, registerPasswordField;
 
-    // Register components
-    private JTextField registerUsernameField;
-    private JPasswordField registerPasswordField;
-    private JButton registerButton;
-    private JButton goToLoginButton;
-
-    private Container container;
+    private final Container container;
 
     public AuthFrame() {
         setTitle("Authentication");
@@ -55,11 +47,11 @@ public class AuthFrame extends JFrame {
         loginPasswordField.setBounds(100, 50, 165, 25);
         loginPanel.add(loginPasswordField);
 
-        loginButton = new JButton("Login");
+        JButton loginButton = new JButton("Login");
         loginButton.setBounds(10, 80, 80, 25);
         loginPanel.add(loginButton);
 
-        goToRegisterButton = new JButton("Register");
+        JButton goToRegisterButton = new JButton("Register");
         goToRegisterButton.setBounds(180, 80, 100, 25);
         loginPanel.add(goToRegisterButton);
 
@@ -82,11 +74,11 @@ public class AuthFrame extends JFrame {
         registerPasswordField.setBounds(100, 50, 165, 25);
         registerPanel.add(registerPasswordField);
 
-        registerButton = new JButton("Register");
+        JButton registerButton = new JButton("Register");
         registerButton.setBounds(10, 80, 100, 25);
         registerPanel.add(registerButton);
 
-        goToLoginButton = new JButton("Login");
+        JButton goToLoginButton = new JButton("Login");
         goToLoginButton.setBounds(180, 80, 100, 25);
         registerPanel.add(goToLoginButton);
 
@@ -121,10 +113,9 @@ public class AuthFrame extends JFrame {
             String name = registerUsernameField.getText();
             String password = new String(registerPasswordField.getPassword());
             Client client = new Client();
-            client.getId();
             client.setNombre(name);
             client.setContrasena(password);
-            client.setRol("Cliente");
+            client.setRol("CLIENTE");
             try {
                 container.registrarCliente(client);
             } catch (IOException ex) {

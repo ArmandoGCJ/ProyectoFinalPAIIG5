@@ -11,11 +11,7 @@ import java.util.List;
 public class ProductoService {
 
     @Autowired
-    private final ProductoRepository productoRepository;
-
-    public ProductoService(ProductoRepository productoRepository) {
-        this.productoRepository = productoRepository;
-    }
+    private  ProductoRepository productoRepository;
 
     public Producto guardarProducto(Producto producto) {
         return productoRepository.save(producto);

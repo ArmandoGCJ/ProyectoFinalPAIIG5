@@ -1,43 +1,57 @@
 package ec.edu.uce.FabricaOrlando.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
-    private Long id;
-
-    private String name;
-
-    private Double price;
-
-    private String description;
+    private long id;
+    private String nombre;
+    private Double precio;
+    private String descripcion;
 
     private String imagenPath;
 
-    public Product(String name, Double price, String description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public Product() {
     }
 
-    public Product(String imagenPath, String description) {
+    public Product(String imagenPath, String nombre, String descripcion, double precio) {
         this.imagenPath = imagenPath;
-        this.description = description;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getImagenPath() {
@@ -46,21 +60,5 @@ public class Product {
 
     public void setImagenPath(String imagenPath) {
         this.imagenPath = imagenPath;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

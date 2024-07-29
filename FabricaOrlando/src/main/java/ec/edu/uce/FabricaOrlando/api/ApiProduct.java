@@ -14,7 +14,7 @@ public class ApiProduct {
     private static final String BASE_URL = "http://localhost:8080/productos";
     private static final String CONTENT_TYPE = "application/json";
 
-    public List<Product> getAll() {
+    public static List<Product> getAll() {
         List<Product> productList = null;
         try {
             URL url = new URL(BASE_URL + "/all");
@@ -34,7 +34,8 @@ public class ApiProduct {
             }
 
             ObjectMapper mapper = new ObjectMapper();
-            productList = mapper.readValue(sb.toString(), new TypeReference<List<Product>>() {});
+            productList = mapper.readValue(sb.toString(), new TypeReference<>() {
+            });
 
             conn.disconnect();
 

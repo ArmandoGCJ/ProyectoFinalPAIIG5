@@ -44,12 +44,15 @@ public class ApiClient {
             httpPost.setEntity(entity);
             httpPost.setHeader("Content-Type", CONTENT_TYPE);
 
-            System.out.println("JSON sent: " + json); // Debugging line
+            System.out.println("JSON sent: " + json);
 
             try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
                 int statusCode = response.getCode();
                 if (statusCode == 200) {
                     return objectMapper.readValue(response.getEntity().getContent(), Client.class);
+                } else if (statusCode == 401) {
+
+                    throw new RuntimeException("Usuario o contraseña incorrectos.");
                 } else {
                     throw new RuntimeException("Unexpected error. HTTP error code: " + statusCode);
                 }

@@ -15,12 +15,18 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    public Pedido() {
+    }
+
     @ManyToMany
     @JoinTable(
             name = "pedido_producto",
             joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "producto_id")
     )
+
+
+
     private List<Producto> productos = new ArrayList<>();
 
     public Long getId() {

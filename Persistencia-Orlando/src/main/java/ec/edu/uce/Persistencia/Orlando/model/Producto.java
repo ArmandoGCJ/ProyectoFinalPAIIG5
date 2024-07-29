@@ -20,6 +20,9 @@ public class Producto {
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Etapa> etapas = new ArrayList<>();
 
+    public Producto() {
+    }
+
     public Long getId() {
         return id;
     }
